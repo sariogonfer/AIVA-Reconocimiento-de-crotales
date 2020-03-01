@@ -7,6 +7,10 @@ class EarTagIdentifierMock:
     def extract_number(self, raw_img):
         return cv2.imread('./data/@__Crotal1.jpg', 0)
 
+
+    def read_number(self, img):
+        return 1225
+
 class EarTagIdentifierTest(unittest.TestCase):
     def setUp(self):
         self.ear_tag_identifier = EarTagIdentifierMock()
@@ -22,6 +26,13 @@ class EarTagIdentifierTest(unittest.TestCase):
         np.testing.assert_array_equal(
             expected_img,
             self.ear_tag_identifier.extract_number(raw_img)
+        )
+
+    def test_read_number(self):
+        raw_img = cv2.imread('./data/@__Crotal1.jpg', 0)
+        self.assertEqual(
+            1225,
+            self.ear_tag_identifier.read_number(raw_img)
         )
 
 
