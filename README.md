@@ -31,5 +31,5 @@ python -m unittest
 
 ## Autores
 
-* Roberto Gallardo Cava * - [RoberG](https://github.com/RoberG)
-* César González Fernández * - [sariogonfer](https://github.com/sariogonfer)
+* **Roberto Gallardo Cava** - [RoberG](https://github.com/RoberG)
+* **César González Fernández** - [sariogonfer](https://github.com/sariogonfer)
