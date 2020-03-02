@@ -2,6 +2,8 @@
 
 El objetivo de este proyecto consiste en la identificación de cabezas de ganado a través de la identificación que aparece en su crotal. Para ello, esta identificación será extraida de imágenes del crotal a las cuales se les aplicará técnicas de visión artificial.
 
+Este proyecto forma es compone una de las prácticas para la asignatura __Aplicaciones Industriales y Comerciales__ del [Master Universitario en Visión Artificial](https://mastervisionartificial.es) de la **Universidad Rey Juan Carlos de Madrid**.
+
 ## Ejecutar el proyecto
 
 Para descargar el proyecto, descarga el código fuente desde este repositorio o clonalo:
