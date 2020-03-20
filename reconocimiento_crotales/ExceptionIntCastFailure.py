@@ -1,3 +1,4 @@
+# Excepción creada que se lanzará cuando haya un fallo en la creación de un objeto de tipo Identifier
 class ExceptionIntCastFailure(Exception):
     def __init__(self, *args):
         if args:

@@ -1,3 +1,4 @@
+# Excepción creada que se lanzará cuando ningún dígito sea detectado en un Bbox
 class ExceptionNotDigitDetected(Exception):
     def __init__(self, *args):
         if args:
