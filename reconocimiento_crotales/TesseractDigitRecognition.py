@@ -1,12 +1,17 @@
-import cv2
-import numpy as np
 import pytesseract
 import platform
 from reconocimiento_crotales.BaseDigitRecognition import BaseDigitRecognition
-from reconocimiento_crotales.ExceptionNotDigitRecognized import ExceptionNotDigitRecognized
 
-
+# Clase que utiliza el OCR Tesseract para la predicción de los digitos
 class TesseractDigitRecognition(BaseDigitRecognition):
+    # Método que se encarga de la predicción
+    # param
+    # image: imagen para la predicción
+    # r: roi a estudiar con la siguiente estructura [(startX, startY), (endX, endY)]
+    #
+    # return
+    # c: caracter identificado
+
     def predict(self, image, r):
         (startX, startY) = r[0]
         (endX, endY) = r[1]
