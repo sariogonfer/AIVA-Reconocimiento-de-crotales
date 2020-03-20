@@ -1,6 +1,6 @@
 from reconocimiento_crotales.ExceptionIntCastFailure import ExceptionIntCastFailure
 
-
+# Clase que alberga el valor extraido y lanza la excepción ExceptionIntCastFailure si hay algún problema
 class Identifier:
     def __init__(self, id):
         try:

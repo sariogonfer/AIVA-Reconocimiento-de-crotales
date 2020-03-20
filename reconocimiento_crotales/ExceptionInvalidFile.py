@@ -1,3 +1,4 @@
+# Excepción creada que se lanzará cuando haya un fallo en la lectura de una imagen
 class ExceptionInvalidFile(Exception):
     def __init__(self, *args):
         if args:

@@ -5,9 +5,18 @@ import numpy as np
 from reconocimiento_crotales.ExceptionNotDigitDetected import ExceptionNotDigitDetected
 from reconocimiento_crotales.BaseDigitExtractor import BaseDigitExtractor
 
-
+# Clase que se dedica a la extracción de dígitos a partir de una imagen dada
 class SplitDigitExtractor(BaseDigitExtractor):
 
+    # Método que detecta las lineas de caracteres de una imagen, y devuelve la mejor candidata a albergar el identificador
+    #
+    # params
+    # image: imagen de la que se extraerán los dígitos
+    #
+    # return
+    # image: imagen una vez preprocesada
+    # best_bb_start: coordenadas (x,y) del inicio del mejor bbox candidato a albergar el identificador
+    # best_bb_end: coordenadas (x,y) del final del mejor bbox candidato a albergar el identificador
     def detect_boundaries(self, image):
         image = self.preprocess_image(image)
 
@@ -70,6 +79,16 @@ class SplitDigitExtractor(BaseDigitExtractor):
         else:
             return image, best_bb_start, best_bb_end
 
+
+    # Método interno utilizado por detect_boundaries que sirve para identificar si las lineas de caracteres detectadas cumplen unos mínimos
+    # param
+    # scores: bboxes candidatos
+    # geometry: valores generados por la red detectora
+    # min_confidence: escalar que sirve como cota
+    #
+    # return
+    # rects: posiciones de la bbox
+    # confidences: puntuaciones de la bbox en el estudio
     def __decode_predictions(self, scores, geometry, min_confidence):
         (numRows, numCols) = scores.shape[2:4]
         rects = []
@@ -106,6 +125,12 @@ class SplitDigitExtractor(BaseDigitExtractor):
 
         return (rects, confidences)
 
+    # Método que se encarga del preprocesado de la imagen
+    # params
+    # image: imagen que será procesada
+    #
+    # return
+    # image: imagen una vez preprocesada
     def preprocess_image(self, image):
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         lower_val = np.array([0, 0, 0])
@@ -117,7 +142,13 @@ class SplitDigitExtractor(BaseDigitExtractor):
         image = cv2.erode(image, kernel, iterations=1)
         return cv2.dilate(image, kernel, iterations=1)
 
-
+    # Método que se encarga de la extracción de los dígitos
+    # params
+    # image: imagen que será procesada
+    #
+    # return
+    # image_orig: imagen una vez preprocesada
+    # rois: lista que contiene todas los bbox de los dígitos detectados
     def extract_digits(self, image):
         image, bb_start, bb_end = self.detect_boundaries(image)
 
