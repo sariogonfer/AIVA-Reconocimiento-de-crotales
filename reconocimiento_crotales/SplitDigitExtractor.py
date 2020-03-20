@@ -1,6 +1,7 @@
 from imutils.object_detection import non_max_suppression
 import cv2
 import numpy as np
+import os
 
 from reconocimiento_crotales.ExceptionNotDigitDetected import ExceptionNotDigitDetected
 from reconocimiento_crotales.BaseDigitExtractor import BaseDigitExtractor
@@ -16,7 +17,9 @@ class SplitDigitExtractor(BaseDigitExtractor):
         height = 320
         width = 320
         padding = 0.0
-        east = "models/frozen_east_text_detection.pb"
+        east = os.path.join(
+            os.path.dirname(__file__), 'models/frozen_east_text_detection.pb'
+        )
         (origH, origW) = image.shape[:2]
 
         (newW, newH) = (width, height)

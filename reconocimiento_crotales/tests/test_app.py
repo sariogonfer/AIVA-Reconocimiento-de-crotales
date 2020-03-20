@@ -9,7 +9,7 @@ class AppTest(unittest.TestCase):
     def test_read_jpg(self):
         reader = PretrainedReader()
         identifier = reader.process_image(
-            open(os.path.join(os.path.dirname(__file__), '0055.TIF'), 'r')
+            os.path.join(os.path.dirname(__file__), '0055.TIF')
         )
         assert identifier.get_value() == '0055'
 
