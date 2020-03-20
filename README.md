@@ -36,6 +36,15 @@ sudo apt update sudo apt install tesseract-ocr
 
 Descargar el binario de la aplicación desde la página del proyecto: [link](https://tesseract-ocr.github.io/tessdoc/Downloads)
 
+## Ejecución
+
+Para ejecutar la aplicación:
+
+``` 
+cd reconocimiento_crotales
+python App.py process_image PATH_IMAGE
+``` 
+
 ## Tests
 
 El sistema dispone de una serie de tests unitarios preparados para comprobar el correcto funcionamiento del mismo. Para ejecutarlos:
