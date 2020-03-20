@@ -9,7 +9,7 @@ class BaseReader():
     #
     # return
     # image: imagen ya leida
-    def __read_image(self, path):
+    def _read_image(self, path):
         #print(path)
         image=cv2.imread(path)
         if image is  None:

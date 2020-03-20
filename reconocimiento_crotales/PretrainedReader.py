@@ -17,7 +17,7 @@ class PretrainedReader(BaseReader):
     # Identifier: Objeto con el valor a identificar
 
     def process_image(self, path):
-        image = self.__read_image(path)
+        image = self._read_image(path)
         i, rois = self.digits_extractor.extract_digits(image)
         text = ''
         for r in rois:
