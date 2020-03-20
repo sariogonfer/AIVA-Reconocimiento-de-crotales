@@ -22,6 +22,20 @@ Los paquetes necesarios se podrán instalar directamente del fichero **_requirem
 pip install -r  requirements.txt
 ```
 
+También será necesario instalar el motor de reconocimiento óptico Tesseract. Para ello se deben seguir los siguientes paso:
+
+1. Ubuntu
+
+Abrid la terminal y ejecutar la siguiente comando:
+
+```
+sudo apt update sudo apt install tesseract-ocr
+```
+
+2. Windows
+
+Descargar el binario de la aplicación desde la página del proyecto: [link](https://tesseract-ocr.github.io/tessdoc/Downloads)
+
 ## Tests
 
 El sistema dispone de una serie de tests unitarios preparados para comprobar el correcto funcionamiento del mismo. Para ejecutarlos:
