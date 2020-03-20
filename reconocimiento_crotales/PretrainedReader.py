@@ -1,15 +1,16 @@
 from reconocimiento_crotales.BaseReader import BaseReader
-from reconocimiento_crotales.BaseDigitExtractor import BaseDigitExtractor
 from reconocimiento_crotales.SplitDigitExtractor import SplitDigitExtractor
 from reconocimiento_crotales.Identifier import Identifier
+from reconocimiento_crotales.PretrainedModelDigitRecognition import PretrainedModelDigitRecognition
 
 class PretrainedReader(BaseReader):
-    def read_image(self, path):
-        return super().read_image(path)
+    def __init__(self):
+        self.digits_extractor = SplitDigitExtractor()
+        self.digits_recognition = PretrainedModelDigitRecognition()
 
-    def digits_extractor(self, image, extractor):
-        return extractor.detect_boundaries(image)
+    def process_image(self, path):
+        image = self._read_image(path)
+        digits = self.digits_extractor.extract_digits(image)
+        value = self.digits_recognition(*digits).get_value()
 
-    def digits_recognition(self, image, rois, recognition):
-        return Identifier(recognition.predict(image, rois))
-
+        return value
