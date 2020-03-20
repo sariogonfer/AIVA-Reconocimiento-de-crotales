@@ -1,0 +1,2 @@
+recursive-include reconocimiento_crotales/tests *
+recursive-include reconocimiento_crotales/models *

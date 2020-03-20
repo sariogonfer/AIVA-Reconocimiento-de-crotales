@@ -22,6 +22,11 @@ Los paquetes necesarios se podrán instalar directamente del fichero **_requirem
 pip install -r  requirements.txt
 ```
 
+Para instalar la herramienta como si un paquete de Python se tratase (y poder ejecutar los tests):
+```
+pip install .
+``` 
+
 También será necesario instalar el motor de reconocimiento óptico Tesseract. Para ello se deben seguir los siguientes paso:
 
 1. Ubuntu
