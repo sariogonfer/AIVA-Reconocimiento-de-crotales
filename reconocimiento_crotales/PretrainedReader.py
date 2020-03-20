@@ -1,16 +1,18 @@
 from reconocimiento_crotales.BaseReader import BaseReader
 from reconocimiento_crotales.SplitDigitExtractor import SplitDigitExtractor
 from reconocimiento_crotales.Identifier import Identifier
-from reconocimiento_crotales.PretrainedModelDigitRecognition import PretrainedModelDigitRecognition
+from reconocimiento_crotales.TesseractDigitRecognition import TesseractDigitRecognition
 
 class PretrainedReader(BaseReader):
     def __init__(self):
         self.digits_extractor = SplitDigitExtractor()
-        self.digits_recognition = PretrainedModelDigitRecognition()
+        self.digits_recognition = TesseractDigitRecognition()
 
     def process_image(self, path):
         image = self._read_image(path)
-        digits = self.digits_extractor.extract_digits(image)
-        value = self.digits_recognition(*digits).get_value()
+        i, rois = self.digits_extractor.extract_digits(image)
+        text = ''
+        for r in rois:
+            text += self.digits_recognition.predict(image, r)
 
-        return value
+        return Identifier(text)

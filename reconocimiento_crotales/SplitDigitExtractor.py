@@ -131,7 +131,7 @@ class SplitDigitExtractor(BaseDigitExtractor):
 
         kernel = np.ones((1, 2), dtype="uint8")
         dilated = cv2.dilate(edges, kernel)
-        im2, ctrs = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        im2, ctrs, _ = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
         # sort contours
         sorted_ctrs = sorted(ctrs, key=lambda ctr: cv2.boundingRect(ctr)[0])
