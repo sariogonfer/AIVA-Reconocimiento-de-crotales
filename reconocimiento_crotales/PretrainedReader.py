@@ -21,6 +21,5 @@ class PretrainedReader(BaseReader):
         i, rois = self.digits_extractor.extract_digits(image)
         text = ''
         for r in rois:
-            text += self.digits_recognition.predict(image, r)
-
+            text += self.digits_recognition.predict(i, r)
         return Identifier(text)

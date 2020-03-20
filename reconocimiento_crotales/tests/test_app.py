@@ -11,7 +11,7 @@ class AppTest(unittest.TestCase):
         identifier = reader.process_image(
             os.path.join(os.path.dirname(__file__), '0055.TIF')
         )
-        assert identifier.get_value() == '0055'
+        assert identifier.get_value() == '55'
 
 
 if __name__ == '__main__':
