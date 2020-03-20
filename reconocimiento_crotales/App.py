@@ -5,7 +5,8 @@ import fire
 class App:
     def process_image(self, path):
         reader = PretrainedReader()
-        return reader.process_image(path)
+        identifier = reader.process_image(path)
+        return identifier.get_value()
 
 
 if __name__ == '__main__':
