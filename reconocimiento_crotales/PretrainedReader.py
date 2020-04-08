@@ -2,12 +2,14 @@ from reconocimiento_crotales.BaseReader import BaseReader
 from reconocimiento_crotales.SplitDigitExtractor import SplitDigitExtractor
 from reconocimiento_crotales.Identifier import Identifier
 from reconocimiento_crotales.TesseractDigitRecognition import TesseractDigitRecognition
+from reconocimiento_crotales.PretrainedModelDigitRecognition import PretrainedModelDigitRecognition
 
 # Clase que hereda de BaseReader y se conectará con un extractor de dígitos y un reconocedor de dígitos
 class PretrainedReader(BaseReader):
     def __init__(self):
         self.digits_extractor = SplitDigitExtractor()
-        self.digits_recognition = TesseractDigitRecognition()
+        # self.digits_recognition = TesseractDigitRecognition()
+        self.digits_recognition = PretrainedModelDigitRecognition()
 
     # Método que sirve para conectar todos los procesos que debe realizarse en la imagen para obtener el Identifier
     # params

@@ -4,7 +4,7 @@ from reconocimiento_crotales.ExceptionIntCastFailure import ExceptionIntCastFail
 class Identifier:
     def __init__(self, id):
         try:
-            self.__id=int(id.replace(' ', ''))
+            self.__id=id.replace(' ', '')
         except:
             raise ExceptionIntCastFailure(
                 f'The {id} value is not a valid Identifier'
