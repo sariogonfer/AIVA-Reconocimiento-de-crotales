@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>AIVA-Reconocimiento de Crotales</title>
+  </head>
+  <body>
+      {% if result%}
+        <div>
+          <img src="data:image/jpeg;base64,{{ result.get_image_base64() }}"/>
+          <img src="data:image/jpeg;base64,{{ result.get_detected_image_base64() }}"/>
+          <span>ID: {{result.get_value() }}</span>
+      </div>
+      {% endif %}
+      <form method=post enctype=multipart/form-data>
+      <input type=file name=image>
+      <input type=submit value=Upload>
+    </form> 
+  </body>
+</html>

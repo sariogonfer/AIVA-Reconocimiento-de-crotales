@@ -1,9 +1,9 @@
 import os
 
 import cv2
-import keras
 import numpy as np
-from keras.models import model_from_json
+from tensorflow import keras
+from tensorflow.keras.models import model_from_json
 
 from reconocimiento_crotales.BaseDigitRecognition import BaseDigitRecognition
 
