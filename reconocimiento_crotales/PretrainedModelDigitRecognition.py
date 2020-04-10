@@ -29,18 +29,28 @@ class PretrainedModelDigitRecognition(BaseDigitRecognition):
                       optimizer=keras.optimizers.Adadelta(),
                       metrics=['accuracy'])
 
-
+    def _smooth_image(self, img):
+        thresh = cv2.threshold(img, 0, 255, cv2.THRESH_OTSU)[1]
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (10, 10))
+        thresh = cv2.morphologyEx(thresh, cv2.MORPH_ERODE, kernel)
+        
+        return thresh
+        
+        
     def predict(self, image, r):
         (startX, startY) = r[0]
         (endX, endY) = r[1]
 
         img = image[startY:endY, startX:endX]
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        img = cv2.resize(img, (28, 28))
-        _, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
-        img = cv2.bitwise_not(img)
+        img = ~img
+        img = self._smooth_image(img)
+        img = cv2.resize(img, (24, 24)) 
+        zeros = np.zeros((28, 28))
+        zeros[2:26, 2:26] = img
+        img = zeros
         img = img / 255.
         img = img.reshape((28, 28, 1))
         r = str(self.model.predict_classes(np.array([img]))[0])
-        # print(r)
+        
         return r
