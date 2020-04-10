@@ -1,18 +1,77 @@
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title>AIVA-Reconocimiento de Crotales</title>
+	<head>
+		<title>AIVA - Reconocimiento de crotales</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='assets/css/main.css') }}">
   </head>
-  <body>
-      {% if result%}
-        <div>
-          <img src="data:image/jpeg;base64,{{ result.get_image_base64() }}"/>
-          <img src="data:image/jpeg;base64,{{ result.get_detected_image_base64() }}"/>
-          <span>ID: {{result.get_value() }}</span>
-      </div>
-      {% endif %}
-      <form method=post enctype=multipart/form-data>
-      <input type=file name=image>
-      <input type=submit value=Upload>
-    </form> 
-  </body>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo">Aplicaciones Industriales y Comerciales</a>
+			</header>
+
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>AIVA - Reconocimiento de crotales</h1>
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+					<!-- Elements -->
+						<div class="row">
+							<div class="col-20 col-12-medium">
+								<!-- Text -->
+									<h2><b>Análisis del crotal</b></h2>
+									<p>Seleccione la imagen del crotal que desea analizar y pulse Enviar.</p>
+							</div>
+						</div>
+						
+						<div class="row">
+							{% if result%}
+							<div>
+							  <img src="data:image/jpeg;base64,{{ result.get_image_base64() }}"/>
+							  <img src="data:image/jpeg;base64,{{ result.get_detected_image_base64() }}"/>
+							</div>
+							<div>
+								<span><h3>ID: <b>{{result.get_value() }}</b></h3></span>
+							</div>
+							 {% endif %}
+						</div>
+							
+						<div class="row">
+							<form method=post enctype=multipart/form-data>
+							  <input type=file name=image>
+							  <input type=submit value=Enviar>
+							</form> 
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			
+
+		<!-- Footer -->
+			<footer id="footer">
+					<div class="copyright">
+						&copy; Roberto Gallardo Cava - César González Fernández
+					</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{{url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+			<script src="{{url_for('static', filename='assets/js/browser.min.js') }}"></script>
+			<script src="{{url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+			<script src="{{url_for('static', filename='assets/js/util.js') }}"></script>
+			<script src="{{url_for('static', filename='assets/js/main.js') }}"></script>
+
+	</body>
 </html>
