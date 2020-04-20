@@ -26,8 +26,9 @@ Para instalar la herramienta como si un paquete de Python se tratase (y poder ej
 ```
 pip install .
 ``` 
+#### Tesseract (old)
 
-También será necesario instalar el motor de reconocimiento óptico Tesseract. Para ello se deben seguir los siguientes paso:
+**Solo necesario si se utiliza este reader**. También será necesario instalar el motor de reconocimiento óptico Tesseract. Para ello se deben seguir los siguientes paso:
 
 1. Ubuntu
 
@@ -41,14 +42,41 @@ sudo apt update sudo apt install tesseract-ocr
 
 Descargar el binario de la aplicación desde la página del proyecto: [link](https://tesseract-ocr.github.io/tessdoc/Downloads)
 
+#### Docker
+
+En caso de querer ejecutar el contenedor la imagen **Docker** preparado para correr la aplicación web, es necesario tener instalado la aplicación **Docker** en el nuestro sistema. Se puede encontrar las instruciones para instalar esta herramienta en [link](https://docs.docker.com/get-docker/)
+
 ## Ejecución
 
-Para ejecutar la aplicación:
+
+### Línea de comandos
+
+Para ejecutar la aplicación a través de la terminal del sistema, podemos ejecutar la aplicación de la siguiente manera:
 
 ``` 
 cd reconocimiento_crotales
 python App.py process_image PATH_IMAGE
 ``` 
+
+### Aplicación Web. Docker. (recomendada)
+
+Se ha creado una imagen de **Docker** con el fin de facilitar la puesta en marcha del sevidor web creado en este proyecto. Para ello, solo necesitaremos tener instalada la herramienta **Docker** sin necesidad de tener instalado el resto de requisitos. 
+
+Para poder crear y ejecutar un contenedor con esta imagen, debemos ejecutar el siguiente comando:
+
+``` 
+docker run -it -p 8000:8000 sario/aiva-reconocimiento-crotales
+``` 
+
+Esto pondrá en marcha un servidor que podrá ser accesible a través del puerto 8000 de nuestro sistema (http://localhost:8000). La imagen es descargada automáticamente desde el repositorio oficial [AIVA-Reconocimiento de crotales](https://hub.docker.com/r/sario/aiva-reconocimiento-crotales).
+
+### Aplicación Web. Directamente en el sistema.
+
+Si se quiere ejecutar la aplicación web directamente sobre el sistema operativo en el que estamos trabajando, en primer lugar será necesario tener instalado todos los requisitos de la aplicación y la propia aplicación. Con todo ello instalado, podremos lanzar una servidor ejecutando la aplicación en local con el siguiente comando:
+
+``` 
+python -m reconocimiento_crotales.server
+```
 
 ## Tests
 
